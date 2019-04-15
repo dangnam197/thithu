@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:weightSum="10"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="120dp"
+    android:background="@drawable/shadow"
+    android:layout_margin="5dp"
+   >
+    <LinearLayout
+        android:weightSum="10"
+        android:orientation="horizontal"
+        android:layout_weight="4"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+        <LinearLayout
+            android:layout_weight="2"
+            android:layout_gravity="bottom"
+            android:layout_width="0dp"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_marginLeft="20dp"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:textColor="@color/colorWhite"
+                android:gravity="center"
+                android:text="1"
+                android:layout_gravity="bottom"
+                android:background="#4CAF50"
+                android:layout_width="40dp"
+                android:layout_height="40dp" />
+        </LinearLayout>
+        <TextView
+            android:layout_weight="6"
+            android:textSize="20sp"
+            android:text="EILTS test 1"
+            android:layout_gravity="center_vertical"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:gravity="left"
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="1/10"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:gravity="center"
+        android:layout_weight="6"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="wrap_content"
+            android:progressDrawable="@drawable/progressbar_custom"
+            android:layout_height="20dp"
+            android:progress="10"
+            android:layout_weight="1" />
+    </LinearLayout>
+</LinearLayout>
