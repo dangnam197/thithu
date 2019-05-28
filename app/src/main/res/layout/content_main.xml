@@ -4,12 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".main.MainActivity"
     tools:showIn="@layout/app_bar_main">
     <ImageView
         android:scaleType="centerCrop"
-        android:src="@drawable/anhnen"
+        android:src="@drawable/back"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
@@ -59,14 +58,14 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_gravity="center_horizontal"
-                    android:src="@drawable/icons_listerning"
+                    android:src="@drawable/headphones_icon_png_648244"
                     android:tint="@color/colorWhite" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:text="LISTENING"
+                    android:text="Listening"
                     android:textColor="@color/colorWhite"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -86,15 +85,15 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_gravity="center_horizontal"
-                    android:src="@drawable/icons_reading"
-                    android:tint="@color/colorBlur" />
+                    android:src="@drawable/mic_icon"
+                    android:tint="@color/colorWhite" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:text="READING"
-                    android:textColor="@color/colorBlur"
+                    android:text="Speaking"
+                    android:textColor="@color/colorWhite"
                     android:textSize="18sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -120,18 +119,19 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="80dp"
+                    android:adjustViewBounds="true"
+                    android:layout_width="wrap_content"
                     android:layout_height="80dp"
                     android:layout_gravity="center_horizontal"
-                    android:src="@drawable/icons_result"
-                    android:tint="@color/colorPurple" />
+                    android:src="@drawable/book"
+                    android:tint="@color/colorWhite" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:text="RESULT"
-                    android:textColor="@color/colorPurple"
+                    android:text="Reading"
+                    android:textColor="@color/colorWhite"
                     android:textSize="18sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -149,16 +149,17 @@
                 <ImageView
                     android:layout_width="80dp"
                     android:layout_height="80dp"
+
                     android:layout_gravity="center_horizontal"
-                    android:src="@drawable/icons_writing"
-                    android:tint="#9C27B0" />
+                    android:src="@drawable/pen"
+                    android:tint="@color/colorWhite" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:text="WRITING"
-                    android:textColor="#9C27B0"
+                    android:text="Writing"
+                    android:textColor="@color/colorWhite"
                     android:textSize="18sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -179,7 +180,7 @@
                     android:layout_height="@dimen/size_main_image_button"
                     android:background="#00FFFFFF"
                     android:scaleType="fitXY"
-                    android:src="@drawable/icons_reading" />
+                    android:src="@drawable/setting" />
             </LinearLayout>
 
             <LinearLayout
@@ -193,7 +194,7 @@
                     android:layout_height="@dimen/size_main_image_button"
                     android:background="#00FFFFFF"
                     android:scaleType="fitXY"
-                    android:src="@drawable/icons_reading" />
+                    android:src="@drawable/rating" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

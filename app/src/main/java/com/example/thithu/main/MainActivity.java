@@ -3,23 +3,21 @@ package com.example.thithu.main;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.thithu.Listening.ListeningActivity;
+import com.example.thithu.listening.ListeningMain.ListeningActivity;
 import com.example.thithu.R;
 import com.example.thithu.UIApp;
 
 public class MainActivity extends AppCompatActivity
-        implements View.OnClickListener, UIApp.IMainActivity {
+        implements View.OnClickListener, UIApp.IMainView {
     private MainPresenter mainPresenter;
     private DrawerLayout drawer;
     private ActionBarDrawerToggle toggle;
@@ -34,6 +32,8 @@ public class MainActivity extends AppCompatActivity
         initView();
         init();
        // mainPresenter.setData();
+        ProgressBar progressBar;
+
 
     }
     private void initView(){

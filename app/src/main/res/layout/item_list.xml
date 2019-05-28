@@ -5,20 +5,21 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="120dp"
     android:background="@drawable/shadow"
-    android:layout_margin="5dp"
+    android:layout_marginTop="5dp"
    >
     <LinearLayout
+        android:paddingTop="15dp"
         android:weightSum="10"
         android:orientation="horizontal"
-        android:layout_weight="4"
+        android:layout_weight="5"
         android:layout_width="match_parent"
         android:layout_height="0dp">
         <LinearLayout
             android:layout_weight="2"
-            android:layout_gravity="bottom"
             android:layout_width="0dp"
             android:layout_height="match_parent">
             <TextView
+                android:id="@+id/item_list_poisition"
                 android:layout_marginLeft="20dp"
                 android:textStyle="bold"
                 android:textSize="20sp"
@@ -31,12 +32,14 @@
                 android:layout_height="40dp" />
         </LinearLayout>
         <TextView
+            android:id="@+id/item_list_title"
             android:layout_weight="6"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:text="EILTS test 1"
-            android:layout_gravity="center_vertical"
+            android:layout_gravity="top"
             android:layout_width="0dp"
-            android:layout_height="wrap_content" />
+            android:maxLines="2"
+            android:layout_height="40dp" />
         <LinearLayout
             android:gravity="left"
             android:layout_weight="2"
@@ -44,6 +47,7 @@
             android:layout_height="match_parent">
 
             <TextView
+                android:id="@+id/item_list_progress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -55,12 +59,12 @@
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:gravity="center"
-        android:layout_weight="6"
+        android:layout_weight="5"
         android:layout_width="match_parent"
         android:layout_height="0dp">
 
         <ProgressBar
-            android:id="@+id/progressBar"
+            android:id="@+id/item_list_progressBar"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="wrap_content"
             android:progressDrawable="@drawable/progressbar_custom"

@@ -66,6 +66,7 @@
             android:orientation="horizontal">
 
             <LinearLayout
+                android:id="@+id/listening_s1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="@dimen/marin_main_item"
@@ -100,6 +101,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/listening_s2"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="@dimen/marin_main_item"
@@ -140,6 +142,7 @@
             android:orientation="horizontal">
 
             <LinearLayout
+                android:id="@+id/listening_s3"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="@dimen/marin_main_item"
@@ -174,6 +177,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/listening_s4"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="@dimen/marin_main_item"
