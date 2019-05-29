@@ -17,7 +17,10 @@ import android.widget.RemoteViews;
 
 import com.example.thithu.R;
 import com.example.thithu.main.MainActivity;
+import com.example.thithu.model.StartAudio;
 
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -262,6 +265,7 @@ public class MediaService extends Service {
             mediaPlayer.setDataSource(url);
             mediaPlayer.prepare(); // might take long! (for buffering, etc)
             mediaPlayer.start();
+            EventBus.getDefault().post(new StartAudio(true,mediaPlayer.getDuration()));
         } catch (IOException e) {
             e.printStackTrace();
         }

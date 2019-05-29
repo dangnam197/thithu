@@ -29,6 +29,7 @@ import com.example.thithu.adapter.SureAdapter;
 import com.example.thithu.model.AnswerCheck;
 import com.example.thithu.model.EventCheckAnswer;
 import com.example.thithu.model.ListListening;
+import com.example.thithu.model.StartAudio;
 import com.example.thithu.model.Test;
 
 import org.greenrobot.eventbus.EventBus;
@@ -134,7 +135,6 @@ public class ListeningQuestActivity extends AppCompatActivity implements UIApp.I
     private void init(){
         setSupportActionBar(toolbar);
         lQPresenter = new ListeningQuestPresenter(this,this);
-        lQPresenter.countTime(600000);
         eventCheckAnswer = new EventCheckAnswer(false);
         //new ApiData().getData();
     }
@@ -183,9 +183,27 @@ public class ListeningQuestActivity extends AppCompatActivity implements UIApp.I
         dialogResult.show();
     }
 
+    @Override
+    public void setPager(int poisition) {
+        viewPager.setCurrentItem(poisition);
+    }
+
+    @Override
+    public void playPause() {
+        Intent intent = new Intent(this, MediaService.class);
+        intent.setAction(MediaService.PLAY_ACTION);
+        startService(intent);
+    }
+
     @Subscribe
     public void onAnswerCheckEvent(AnswerCheck answerCheck) {
         lQPresenter.updateAnswerCheck(answerCheck);
+    }
+    @Subscribe
+    public void onStartAudioEvent(StartAudio startAudio) {
+        //lQPresenter.updateAnswerCheck(answerCheck);
+        Log.d(TAG, "onStartAudioEvent: " + startAudio.getTime());
+        lQPresenter.countTime(600000);
     }
 
     @Override
@@ -208,7 +226,7 @@ public class ListeningQuestActivity extends AppCompatActivity implements UIApp.I
 
     @Override
     public void clickItem(int poisition) {
-        viewPager.setCurrentItem(poisition);
+        setPager(poisition);
         dialogSure.dismiss();
     }
 }

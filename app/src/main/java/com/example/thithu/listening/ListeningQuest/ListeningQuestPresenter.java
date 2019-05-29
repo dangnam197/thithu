@@ -7,6 +7,10 @@ import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.StringRequestListener;
 import com.example.thithu.IType;
 import com.example.thithu.R;
 import com.example.thithu.UIApp;
@@ -17,6 +21,7 @@ import com.example.thithu.model.AnswerCheck;
 import com.example.thithu.model.ListeningsSection1;
 import com.example.thithu.model.ListeningsSection1Question;
 import com.example.thithu.TimeModel;
+import com.example.thithu.model.ListeningsSection1Time;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -41,6 +46,12 @@ public class ListeningQuestPresenter implements OnStringListener {
     private static String rootlinks4 = "data.listeningssection4/";
     private static final String TAG = "ListeningQuestPresenter";
     private ArrayList<Fragment> listFragments;
+
+    private int poisitionQuest = 0;
+    private int timePause = 15;
+    private int curentPause = 0;
+    private boolean checkPause=false;
+    private boolean PAUSE = true;
     public ListeningQuestPresenter(final UIApp.IListeningQuestView listeningQuestActivity,Context context) {
         this.context = context;
         this.listeningQuestActivity = listeningQuestActivity;
@@ -48,12 +59,15 @@ public class ListeningQuestPresenter implements OnStringListener {
         gson = new Gson();
         apiData = new ApiData();
         listAnswerCheck = new ArrayList<>();
+        list = new ArrayList<>();
+
     }
     public void setData(int id,int type){
         this.type = type;
         String link = "";
         if (type == IType.LISTENINGS_SECTION1) {
             link = context.getString(R.string.rootLink) + rootlinks1+id;
+
         }
         if (type == IType.LISTENINGS_SECTION2) {
             link = context.getString(R.string.rootLink) + rootlinks2+id;
@@ -75,11 +89,32 @@ public class ListeningQuestPresenter implements OnStringListener {
     public void updateAnswerCheck(AnswerCheck answerCheck){
         listAnswerCheck.set(answerCheck.getPoisition(),answerCheck);
     }
-    public void countTime(int time){
+    public void countTime(final int time){
         countDownTimer = new CountDownTimer(time,1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 listeningQuestActivity.updateTime(timeModel.timeToString(millisUntilFinished));
+                if(list.size()>poisitionQuest){
+                    if(checkPause!=PAUSE) {
+                        if (((time - millisUntilFinished) / 1000) - (poisitionQuest*timePause)>= list.get(poisitionQuest).getTimeFinish()) {
+                            checkPause = PAUSE;
+                            poisitionQuest ++;
+                            listeningQuestActivity.playPause();
+                            //Log.d(TAG, "onTick: "+"đã tạm dừng"+(millisUntilFinished/1000));
+                        }
+                    }
+                    else {
+                        if(curentPause >= timePause){
+                            curentPause = 0;
+                            checkPause = false;
+                            listeningQuestActivity.setPager(poisitionQuest);
+                            listeningQuestActivity.playPause();
+                            //Log.d(TAG, "onTick: "+"đã tạm chạy");
+                        }
+                        curentPause++;
+
+                    }
+                }
             }
 
             @Override
@@ -140,4 +175,5 @@ public class ListeningQuestPresenter implements OnStringListener {
     public void onJSonArray(JSONArray jsonArray) {
 
     }
+
 }

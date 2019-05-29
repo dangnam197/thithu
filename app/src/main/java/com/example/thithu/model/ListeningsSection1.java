@@ -8,7 +8,7 @@ public class ListeningsSection1 implements Serializable {
 
     private Integer id;
 
-    private int title;
+    private String title;
 
     private String audio;
 
@@ -21,7 +21,7 @@ public class ListeningsSection1 implements Serializable {
         this.id = id;
     }
 
-    public ListeningsSection1(Integer id, int title, String audio, String suggestion) {
+    public ListeningsSection1(Integer id, String title, String audio, String suggestion) {
         this.id = id;
         this.title = title;
         this.audio = audio;
@@ -36,11 +36,11 @@ public class ListeningsSection1 implements Serializable {
         this.id = id;
     }
 
-    public int getTitle() {
+    public String getTitle() {
         return title;
     }
 
-    public void setTitle(int title) {
+    public void setTitle(String title) {
         this.title = title;
     }
 

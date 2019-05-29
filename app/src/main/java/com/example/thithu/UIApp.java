@@ -25,6 +25,8 @@ public interface UIApp {
         void setLinkAudio(String url);
         void showDialogSure(ArrayList<AnswerCheck> listAnswerCheck);
         void showDialogResult(int correct,int total);
+        void setPager(int poisition);
+        void playPause();
 
     }
     interface IListeningView {

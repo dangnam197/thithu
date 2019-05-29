@@ -12,6 +12,8 @@ public class ListeningsSection1Question implements Serializable {
 
     private String question;
 
+    private int timeFinish;
+
     public ListeningsSection1Question() {
     }
 
@@ -19,10 +21,11 @@ public class ListeningsSection1Question implements Serializable {
         this.id = id;
     }
 
-    public ListeningsSection1Question(Integer id, int listeningSection1Id, String question) {
+    public ListeningsSection1Question(Integer id, int listeningSection1Id, String question, int timeFinish) {
         this.id = id;
         this.listeningSection1Id = listeningSection1Id;
         this.question = question;
+        this.timeFinish = timeFinish;
     }
 
     public Integer getId() {
@@ -47,6 +50,14 @@ public class ListeningsSection1Question implements Serializable {
 
     public void setQuestion(String question) {
         this.question = question;
+    }
+
+    public int getTimeFinish() {
+        return timeFinish;
+    }
+
+    public void setTimeFinish(int timeFinish) {
+        this.timeFinish = timeFinish;
     }
 
     @Override
