@@ -24,4 +24,8 @@ public class MainPresenter {
     public void SpeakingClick(){
         iMainView.starSpeakingActivity();
     }
+
+    public void TimePickerButtonClick() {
+        iMainView.startTimePicker();
+    }
 }

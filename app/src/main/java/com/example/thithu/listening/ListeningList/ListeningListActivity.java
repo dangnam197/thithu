@@ -2,21 +2,20 @@ package com.example.thithu.listening.ListeningList;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.widget.Toolbar;
+
 import android.view.View;
 
 import com.example.thithu.IType;
 import com.example.thithu.R;
 import com.example.thithu.UIApp;
 import com.example.thithu.adapter.ListAdapter;
-import com.example.thithu.listening.ListeningQuest.ListeningQuestActivity;
+import com.example.thithu.listening.ListeningQuest.test.ListeningQuestActivitytest;
 import com.example.thithu.model.ListListening;
-import com.example.thithu.model.ListeningsSection2;
 
 import java.util.ArrayList;
 
@@ -79,7 +78,7 @@ public class ListeningListActivity extends AppCompatActivity implements UIApp.IL
 
     @Override
     public void startActivity(int type, ListListening listListening) {
-        Intent intent = new Intent(ListeningListActivity.this, ListeningQuestActivity.class);
+        Intent intent = new Intent(ListeningListActivity.this, ListeningQuestActivitytest.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         intent.putExtra("TYPE",type);
         intent.putExtra("ITEM",listListening);

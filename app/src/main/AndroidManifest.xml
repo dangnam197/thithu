@@ -28,9 +28,16 @@
             android:name=".listening.ListeningQuest.ListeningQuestActivity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
+            android:name=".listening.ListeningQuest.test.ListeningQuestActivitytest"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".calendar.TimePickerActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
             android:name=".listening.ListeningList.ListeningListActivity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <service android:name=".Service.MediaService"></service>
+        <service android:name=".Service.MediaServiceAll"></service>
+        <receiver android:name=".calendar.AlarmReceiver"></receiver>
     </application>
 
 </manifest>

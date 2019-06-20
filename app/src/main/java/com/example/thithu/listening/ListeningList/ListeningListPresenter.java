@@ -9,6 +9,8 @@ import com.example.thithu.RListener;
 import com.example.thithu.UIApp;
 import com.example.thithu.api.ApiData;
 import com.example.thithu.api.OnStringListener;
+import com.example.thithu.database.database.AppDataBase;
+import com.example.thithu.database.entity.Mark;
 import com.example.thithu.model.ListListening;
 import com.example.thithu.model.ListeningsSection2;
 import com.example.thithu.model.RandomArrayList;
@@ -34,12 +36,13 @@ public class ListeningListPresenter implements OnStringListener, RListener.Liste
     private static String rootlinks1 = "data.listeningssection1/";
     private static String rootlinks4 = "data.listeningssection4/";
     private int type;
-
+    private AppDataBase dataBase;
     public ListeningListPresenter(Context context, UIApp.IListeningListView listeningListView) {
         this.context = context;
         this.listeningListView = listeningListView;
         gson = new Gson();
         apiData = new ApiData();
+        dataBase = AppDataBase.getAppDatabase(context);
 
     }
 
@@ -89,7 +92,13 @@ public class ListeningListPresenter implements OnStringListener, RListener.Liste
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                 int id = jsonObject.getInt("id");
                 String title = jsonObject.getString("title");
-                llist.add(new ListListening(id, title));
+
+                Mark mark = dataBase.MarkDao().getMarkSection(this.type,id);
+                if(mark!=null){
+                    llist.add(new ListListening(id,title,mark.getMax(),mark.getPoint()));
+                }else {
+                    llist.add(new ListListening(id, title));
+                }
             }
             llist = new RandomArrayList<ListListening>().random(llist);
             listeningListView.setAdapterRecycler(llist);

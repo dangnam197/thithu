@@ -1,6 +1,7 @@
 package com.example.thithu.Service;
 
 import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
@@ -10,8 +11,8 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
 import android.os.IBinder;
-import android.support.annotation.Nullable;
-import android.support.v4.content.LocalBroadcastManager;
+import androidx.annotation.Nullable;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import android.util.Log;
 import android.widget.RemoteViews;
 
@@ -23,7 +24,6 @@ import com.example.thithu.model.StartAudio;
 import org.greenrobot.eventbus.EventBus;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 
@@ -73,8 +73,6 @@ public class MediaService extends Service {
                 isRuning = false;
                 setMediaData(intent.getStringExtra("link"));
                 startForeground(1, prepareNotification(intent));
-
-
                 Log.d(TAG, "onStartCommand: "+intent.getStringExtra("link"));
             }else {
                // mediaInit();
@@ -225,27 +223,45 @@ public class MediaService extends Service {
 //
 //
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            Notification noti = new Notification.Builder(this)
-                    .setSmallIcon(R.drawable.ic_android_black_24dp)
-                    .setContentIntent(pendingIntent)
-                    .setCustomContentView(remoteViews)
-                    .setStyle(new Notification.DecoratedMediaCustomViewStyle())
-                    .build();
-            noti.flags |= Notification.FLAG_FOREGROUND_SERVICE;
-            return noti;
+
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+                String NOTIFICATION_CHANNEL_ID = "com.example.thithu.Service.Id";
+                NotificationChannel channel = notificationManager.getNotificationChannel(NOTIFICATION_CHANNEL_ID);
+                if (channel == null){
+                    channel = new NotificationChannel(NOTIFICATION_CHANNEL_ID,"dangnam",NotificationManager.IMPORTANCE_MIN);
+                    channel.setSound(null,null);
+                    notificationManager.createNotificationChannel(channel);
+                }
+                Notification noti = new Notification.Builder(this,NOTIFICATION_CHANNEL_ID)
+                        .setSmallIcon(R.drawable.ic_android_black_24dp)
+                        .setContentIntent(pendingIntent)
+                        .setCustomContentView(remoteViews)
+                        .setStyle(new Notification.DecoratedMediaCustomViewStyle())
+                        .build();
+                noti.flags |= Notification.FLAG_FOREGROUND_SERVICE;
+                return noti;
+            }else {
+                Notification noti = new Notification.Builder(this)
+                        .setSmallIcon(R.drawable.ic_android_black_24dp)
+                        .setContentIntent(pendingIntent)
+                        .setCustomContentView(remoteViews)
+                        .setStyle(new Notification.DecoratedMediaCustomViewStyle())
+                        .build();
+                noti.flags |= Notification.FLAG_FOREGROUND_SERVICE;
+                return noti;
+            }
         }
         else {
-            Notification notification;
-            notification = new Notification.Builder(this)
-                    .setAutoCancel(true)
-                    .setSmallIcon(R.drawable.ic_android_black_24dp)
-                    .setContent(remoteViews)
-                    .setContentIntent(pendingIntent)
-                    .setPriority(Notification.PRIORITY_MAX)
-                    .build();
-            NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-            //notificationManager.notify(1,notification);
-            return notification;
+
+                Notification notification;
+                notification = new Notification.Builder(this)
+                        .setAutoCancel(true)
+                        .setSmallIcon(R.drawable.ic_android_black_24dp)
+                        .setContent(remoteViews)
+                        .setContentIntent(pendingIntent)
+                        .setPriority(Notification.PRIORITY_MAX)
+                        .build();
+                return notification;
         }
     }
     private void setMediaData(int progress){
