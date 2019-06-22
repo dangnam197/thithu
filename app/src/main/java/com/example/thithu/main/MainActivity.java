@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import com.example.thithu.Service.MediaServiceAll;
 import com.example.thithu.calendar.TimePickerActivity;
+import com.example.thithu.reading.ReadingMain.ReadingActivity;
 import com.google.android.material.navigation.NavigationView;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity
     private NavigationView navigationView;
     private Toolbar toolbar;
     private LinearLayout linearLayoutListening,linearLayoutSpeaking,linearLayoutReading,linearLayoutWriting;
-    private ImageButton timePickerButton;
+    private ImageButton timePickerButton,audioButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,11 +49,13 @@ public class MainActivity extends AppCompatActivity
         linearLayoutSpeaking = findViewById(R.id.line_speaking);
         linearLayoutWriting = findViewById(R.id.line_writing);
         timePickerButton = findViewById(R.id.time_picker_button);
+        audioButton = findViewById(R.id.main_audio);
         linearLayoutListening.setOnClickListener(this);
         linearLayoutReading.setOnClickListener(this);
         linearLayoutSpeaking.setOnClickListener(this);
         linearLayoutWriting.setOnClickListener(this);
         timePickerButton.setOnClickListener(this);
+        audioButton.setOnClickListener(this);
     }
     private void init(){
         setSupportActionBar(toolbar);
@@ -73,7 +76,9 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void starReadingActivity() {
-
+        Intent intent = new Intent(MainActivity.this, ReadingActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
     }
 
     @Override
@@ -84,9 +89,6 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void starSpeakingActivity() {
 
-            Intent intent = new Intent(this, MediaServiceAll.class);
-            intent.setAction(MediaServiceAll.STARTMEDIASERVER_ACTION);
-            startService(intent);
 
 
     }
@@ -96,6 +98,13 @@ public class MainActivity extends AppCompatActivity
         Intent intent = new Intent(MainActivity.this, TimePickerActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
+    }
+
+    @Override
+    public void startServiceAudio() {
+        Intent intent = new Intent(this, MediaServiceAll.class);
+        intent.setAction(MediaServiceAll.STARTMEDIASERVER_ACTION);
+        startService(intent);
     }
 
     @Override
@@ -110,6 +119,12 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.line_speaking:
                 mainPresenter.SpeakingClick();
+                break;
+            case R.id.line_reading:
+                mainPresenter.ReadingClick();
+                break;
+            case R.id.main_audio:
+                mainPresenter.AudioButtonClick();
                 break;
         }
     }

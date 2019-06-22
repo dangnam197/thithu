@@ -136,7 +136,7 @@ public class ListeningQuestActivity extends AppCompatActivity{
 //    }
 //    private void init(){
 //        setSupportActionBar(toolbar);
-//        lQPresenter = new ListeningQuestPresenter(this,this);
+//        lQPresenter = new ReadingQuestPresenter(this,this);
 //        eventCheckAnswer = new EventCheckAnswer(false);
 //        //new ApiData().getData();
 //    }

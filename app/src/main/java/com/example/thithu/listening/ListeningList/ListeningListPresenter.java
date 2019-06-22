@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ListeningListPresenter implements OnStringListener, RListener.ListeningList {
-    private static final String TAG = "ListeningListPresenter";
+    private static final String TAG = "ReadingListPresenter";
     private ArrayList<ListeningsSection2> list;
     private UIApp.IListeningListView listeningListView;
     private Gson gson;

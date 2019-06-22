@@ -40,7 +40,7 @@ public class ListeningQuestPresenter {
     private static String rootlinks3 = "data.listeningssection3/";
     private static String rootlinks1 = "data.listeningssection1question/sid=";
     private static String rootlinks4 = "data.listeningssection4/";
-    private static final String TAG = "ListeningQuestPresenter";
+    private static final String TAG = "ReadingQuestPresenter";
     private ArrayList<Fragment> listFragments;
 
     private int poisitionQuest = 0;

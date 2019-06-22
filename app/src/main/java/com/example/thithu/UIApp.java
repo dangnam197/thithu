@@ -6,6 +6,8 @@ import com.example.thithu.model.AnswerCheck;
 import com.example.thithu.model.ListListening;
 import com.example.thithu.model.ListeningsSection2;
 import com.example.thithu.model.ListeningsSection3Question;
+import com.example.thithu.model.ReadingsPart1;
+import com.example.thithu.model.ReadingsPart1Question;
 import com.example.thithu.model.Test;
 
 import java.util.ArrayList;
@@ -18,6 +20,7 @@ public interface UIApp {
         void starWritingActivity();
         void starSpeakingActivity();
         void startTimePicker();
+        void startServiceAudio();
     }
     interface IListeningQuestView {
         void updateTime(String time);
@@ -50,5 +53,10 @@ public interface UIApp {
     interface IListeningListView {
         void setAdapterRecycler(ArrayList<ListListening> list);
         void startActivity(int type,ListListening listListening);
+    }
+    interface FragmentReadingP1{
+        void setDataRecyclerView(ArrayList<ReadingsPart1Question> listReadingP1);
+        void showDialogResult(int correct,int total);
+        void setTextReading(String text);
     }
 }

@@ -23,7 +23,7 @@ public class ListeningListActivity extends AppCompatActivity implements UIApp.IL
     private Toolbar toolbar;
     private ListeningListPresenter presenter;
     private RecyclerView recyclerView;
-    private static final String TAG = "ListeningListActivity";
+    private static final String TAG = "ReadingListActivity";
     private ListAdapter listAdapter;
     private int type;
     @Override
@@ -55,7 +55,7 @@ public class ListeningListActivity extends AppCompatActivity implements UIApp.IL
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(ListeningActivity.this, "đã clcik", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(ReadingActivity.this, "đã clcik", Toast.LENGTH_SHORT).show();
                 onBackPressed();
             }
         });

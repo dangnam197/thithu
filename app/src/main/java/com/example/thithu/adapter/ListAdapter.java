@@ -39,6 +39,8 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHoder> {
         viewHoder.poisition.setText((i+1)+"");
         viewHoder.progress.setText(list.get(i).getCurrent()+"/"+list.get(i).getDuration());
         viewHoder.title.setText(list.get(i).getTitle());
+        viewHoder.progressBar.setMax(list.get(i).getDuration());
+        viewHoder.progressBar.setProgress(list.get(i).getCurrent());
     }
 
     @Override

@@ -35,6 +35,12 @@
         <activity
             android:name=".listening.ListeningList.ListeningListActivity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".reading.ReadingMain.ReadingActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".reading.ReadingList.ReadingListActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".reading.ReadingQuest.test.ReadingQuestActivitytest"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <service android:name=".Service.MediaService"></service>
         <service android:name=".Service.MediaServiceAll"></service>
         <receiver android:name=".calendar.AlarmReceiver"></receiver>

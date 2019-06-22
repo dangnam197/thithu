@@ -28,4 +28,8 @@ public class MainPresenter {
     public void TimePickerButtonClick() {
         iMainView.startTimePicker();
     }
+
+    public void AudioButtonClick() {
+        iMainView.startServiceAudio();
+    }
 }

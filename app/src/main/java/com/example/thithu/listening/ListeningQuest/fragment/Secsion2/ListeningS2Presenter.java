@@ -27,7 +27,7 @@ public class ListeningS2Presenter implements OnStringListener {
     private static String rootlinks1 = "data.listeningssection2/";
     private int id;
     private AppDataBase dataBase;
-    private static final String TAG = "ListeningS3Presenter";
+    private static final String TAG = "ReadingP1Presenter";
     private ListeningsSection2 listeningsSection2;
     public ListeningS2Presenter(Context context, UIApp.FragmentListeningS2 fragmentListeningS2) {
         this.context = context;
