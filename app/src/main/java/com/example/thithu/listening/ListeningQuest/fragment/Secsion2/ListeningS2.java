@@ -1,4 +1,4 @@
-package com.example.thithu.reading.ReadingQuest.fragment.Secsion1;
+package com.example.thithu.listening.ListeningQuest.fragment.Secsion2;
 
 import android.app.Dialog;
 import android.graphics.Color;
@@ -9,17 +9,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.thithu.R;
 import com.example.thithu.UIApp;
-import com.example.thithu.adapter.QuestListeningS3Adapter;
-import com.example.thithu.adapter.ReadingP1Adapter;
+import com.example.thithu.adapter.QuestListeningS2;
+import com.example.thithu.model.AnswerCheck;
 import com.example.thithu.model.EventCheckAnswer;
-import com.example.thithu.model.ListeningsSection3Question;
-import com.example.thithu.model.ReadingsPart1;
-import com.example.thithu.model.ReadingsPart1Question;
+import com.example.thithu.model.ListeningsSection2;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -31,21 +31,25 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import static androidx.constraintlayout.widget.Constraints.TAG;
+
 /**
  * te
  */
-public class ReadingP1 extends Fragment implements UIApp.FragmentReadingP1, View.OnClickListener, ReadingP1Adapter.OnClickListener {
-    private ReadingP1Presenter presenter;
+public class ListeningS2 extends Fragment implements UIApp.FragmentListeningS2, View.OnClickListener, QuestListeningS2.OnClickListener {
+    private ListeningS2Presenter presenter;
     private int id;
-    private TextView tvDialogResult,readP1text;
+    private TextView tvDialogResult;
     private Dialog dialogResult;
+    private RecyclerView recyclerViewSure;
     private LinearLayout btnSubmit;
     private Button btnCheck, btnFinish;
     private EventCheckAnswer eventCheckAnswer;
+    private ImageView imageView;
     private RecyclerView recyclerView;
     private static final String TAG = "ReadingP1";
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.reading_p1, container, false);
+        View view = inflater.inflate(R.layout.listening_secsion2, container, false);
         init(view);
         return view;
     }
@@ -54,19 +58,20 @@ public class ReadingP1 extends Fragment implements UIApp.FragmentReadingP1, View
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle bundle = getArguments();
-        presenter = new ReadingP1Presenter(getContext(), this);
+        presenter = new ListeningS2Presenter(getContext(), this);
         if (bundle != null) {
             id = bundle.getInt("ID");
+            //Log.d(TAG, "onCreate: "+id);;
         }
 
     }
 
     private void init(View view) {
         initDilogResult();
-        btnSubmit = view.findViewById(R.id.reading_p1_btn_submit);
+        btnSubmit = view.findViewById(R.id.listening_s2_btn_submit);
         btnSubmit.setOnClickListener(this);
-        recyclerView = view.findViewById(R.id.reading_p1_recycler);
-        readP1text = view.findViewById(R.id.reading_p1_text);
+        recyclerView = view.findViewById(R.id.listening_s2_recycler);
+        imageView = view.findViewById(R.id.listening_s2_image);
         presenter.setData(id);
 
     }
@@ -86,13 +91,17 @@ public class ReadingP1 extends Fragment implements UIApp.FragmentReadingP1, View
 
 
 
-
     @Override
-    public void setDataRecyclerView(ArrayList<ReadingsPart1Question> listReadingP1) {
+    public void setDataRecyclerView(ListeningsSection2 listeningsSection2) {
+
+        ArrayList<Integer> list = new ArrayList<>();
+        for(int i=0;i<5;i++){
+            list.add(i);
+        }
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
-        ReadingP1Adapter readingP1Adapter = new ReadingP1Adapter(getContext(),listReadingP1,this);
-        recyclerView.setAdapter(readingP1Adapter);
+        QuestListeningS2 questListeningS2 = new QuestListeningS2(getContext(),list,this);
+        recyclerView.setAdapter(questListeningS2);
     }
 
     @Override
@@ -102,16 +111,15 @@ public class ReadingP1 extends Fragment implements UIApp.FragmentReadingP1, View
     }
 
     @Override
-    public void setTextReading(String text) {
-        readP1text.setText(text);
+    public void setImageView(String link) {
+        Glide.with(getContext()).load(link).into(imageView);
     }
-
 
     @Override
     public void onClick(View v) {
         int id = v.getId();
         switch (id) {
-            case R.id.reading_p1_btn_submit:
+            case R.id.listening_s2_btn_submit:
                 presenter.clickSubmit();
                 break;
             case R.id.btn_dialog_result_check:
@@ -122,12 +130,12 @@ public class ReadingP1 extends Fragment implements UIApp.FragmentReadingP1, View
             case R.id.btn_dialog_result_finish:
                 getActivity().onBackPressed();
                 break;
-
-
         }
     }
+
     @Override
-    public void itemText(int poisition, boolean answer) {
-        presenter.updateAnswerCheck(poisition,answer);
+    public void itemText(int poisition, String text) {
+        Log.d(TAG, "itemText: "+poisition);
+        presenter.updateAnswerCheck(poisition,text);
     }
 }

@@ -1,4 +1,4 @@
-package com.example.thithu.reading.ReadingQuest.fragment.Secsion1;
+package com.example.thithu.reading.ReadingQuest.fragment.Secsion3;
 
 import android.app.Dialog;
 import android.graphics.Color;
@@ -15,11 +15,8 @@ import android.widget.TextView;
 import com.example.thithu.R;
 import com.example.thithu.UIApp;
 import com.example.thithu.adapter.QuestListeningS3Adapter;
-import com.example.thithu.adapter.ReadingP1Adapter;
 import com.example.thithu.model.EventCheckAnswer;
 import com.example.thithu.model.ListeningsSection3Question;
-import com.example.thithu.model.ReadingsPart1;
-import com.example.thithu.model.ReadingsPart1Question;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -34,10 +31,10 @@ import androidx.recyclerview.widget.RecyclerView;
 /**
  * te
  */
-public class ReadingP1 extends Fragment implements UIApp.FragmentReadingP1, View.OnClickListener, ReadingP1Adapter.OnClickListener {
-    private ReadingP1Presenter presenter;
+public class ReadingP3 extends Fragment implements UIApp.FragmentListeningS3, View.OnClickListener, QuestListeningS3Adapter.OnClickListener {
+    private ReadingP3Presenter presenter;
     private int id;
-    private TextView tvDialogResult,readP1text;
+    private TextView tvDialogResult;
     private Dialog dialogResult;
     private LinearLayout btnSubmit;
     private Button btnCheck, btnFinish;
@@ -45,7 +42,7 @@ public class ReadingP1 extends Fragment implements UIApp.FragmentReadingP1, View
     private RecyclerView recyclerView;
     private static final String TAG = "ReadingP1";
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.reading_p1, container, false);
+        View view = inflater.inflate(R.layout.listening_secsion3, container, false);
         init(view);
         return view;
     }
@@ -54,7 +51,7 @@ public class ReadingP1 extends Fragment implements UIApp.FragmentReadingP1, View
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle bundle = getArguments();
-        presenter = new ReadingP1Presenter(getContext(), this);
+        presenter = new ReadingP3Presenter(getContext(), this);
         if (bundle != null) {
             id = bundle.getInt("ID");
         }
@@ -63,10 +60,9 @@ public class ReadingP1 extends Fragment implements UIApp.FragmentReadingP1, View
 
     private void init(View view) {
         initDilogResult();
-        btnSubmit = view.findViewById(R.id.reading_p1_btn_submit);
+        btnSubmit = view.findViewById(R.id.listening_s3_btn_submit);
         btnSubmit.setOnClickListener(this);
-        recyclerView = view.findViewById(R.id.reading_p1_recycler);
-        readP1text = view.findViewById(R.id.reading_p1_text);
+        recyclerView = view.findViewById(R.id.listening_s3_recycler);
         presenter.setData(id);
 
     }
@@ -86,13 +82,13 @@ public class ReadingP1 extends Fragment implements UIApp.FragmentReadingP1, View
 
 
 
-
     @Override
-    public void setDataRecyclerView(ArrayList<ReadingsPart1Question> listReadingP1) {
+    public void setDataRecyclerView(ArrayList<ListeningsSection3Question> list) {
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
-        ReadingP1Adapter readingP1Adapter = new ReadingP1Adapter(getContext(),listReadingP1,this);
-        recyclerView.setAdapter(readingP1Adapter);
+        QuestListeningS3Adapter questListeningS3 = new QuestListeningS3Adapter(getContext(),list,this);
+        recyclerView.setAdapter(questListeningS3);
     }
 
     @Override
@@ -101,17 +97,13 @@ public class ReadingP1 extends Fragment implements UIApp.FragmentReadingP1, View
         dialogResult.show();
     }
 
-    @Override
-    public void setTextReading(String text) {
-        readP1text.setText(text);
-    }
 
 
     @Override
     public void onClick(View v) {
         int id = v.getId();
         switch (id) {
-            case R.id.reading_p1_btn_submit:
+            case R.id.listening_s3_btn_submit:
                 presenter.clickSubmit();
                 break;
             case R.id.btn_dialog_result_check:
@@ -119,15 +111,12 @@ public class ReadingP1 extends Fragment implements UIApp.FragmentReadingP1, View
                 EventBus.getDefault().post(eventCheckAnswer);
                 dialogResult.dismiss();
                 break;
-            case R.id.btn_dialog_result_finish:
-                getActivity().onBackPressed();
-                break;
-
-
         }
     }
+
     @Override
-    public void itemText(int poisition, boolean answer) {
-        presenter.updateAnswerCheck(poisition,answer);
+    public void itemText(int poisition, String text) {
+        Log.d(TAG, "itemText: "+poisition);
+        presenter.updateAnswerCheck(poisition,text);
     }
 }

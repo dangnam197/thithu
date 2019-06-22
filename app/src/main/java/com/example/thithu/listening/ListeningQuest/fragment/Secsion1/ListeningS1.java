@@ -160,6 +160,9 @@ public class ListeningS1 extends Fragment implements UIApp.FragmentListeningS1, 
                 EventBus.getDefault().post(eventCheckAnswer);
                 dialogResult.dismiss();
                 break;
+            case R.id.btn_dialog_result_finish:
+                getActivity().onBackPressed();
+                break;
         }
     }
 

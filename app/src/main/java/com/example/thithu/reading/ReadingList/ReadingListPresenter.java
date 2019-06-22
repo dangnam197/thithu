@@ -1,7 +1,6 @@
-package com.example.thithu.listening.ListeningList;
+package com.example.thithu.reading.ReadingList;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.example.thithu.IType;
 import com.example.thithu.R;
@@ -24,20 +23,20 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListeningListPresenter implements OnStringListener, RListener.ListeningList {
+public class ReadingListPresenter implements OnStringListener, RListener.ListeningList {
     private static final String TAG = "WrittingListPresenter";
     private ArrayList<ListeningsSection2> list;
     private UIApp.IListeningListView listeningListView;
     private Gson gson;
     private ApiData apiData;
     private Context context;
-    private static String rootlinks2 = "data.listeningssection2/";
+    private static String rootlinks2 = "data.readingspart2/";
     private static String rootlinks3 = "data.listeningssection3/";
-    private static String rootlinks1 = "data.listeningssection1/";
-    private static String rootlinks4 = "data.listeningssection4/";
+    private static String rootlinks1 = "data.readingspart1/";
+    private static String rootlinks4 = "data.readingspart3/";
     private int type;
     private AppDataBase dataBase;
-    public ListeningListPresenter(Context context, UIApp.IListeningListView listeningListView) {
+    public ReadingListPresenter(Context context, UIApp.IListeningListView listeningListView) {
         this.context = context;
         this.listeningListView = listeningListView;
         gson = new Gson();
@@ -49,13 +48,13 @@ public class ListeningListPresenter implements OnStringListener, RListener.Liste
     public void setData(int type) {
         this.type = type;
         String link = "";
-        if (type == IType.LISTENINGS_SECTION1) {
+        if (type == IType.READINGS_PART1) {
             link = context.getString(R.string.rootLink) + rootlinks1;
         }
-        if (type == IType.LISTENINGS_SECTION2) {
+        if (type == IType.READINGS_PART2) {
             link = context.getString(R.string.rootLink) + rootlinks2;
         }
-        if (type == IType.LISTENINGS_SECTION3) {
+        if (type == IType.READINGS_PART3) {
             link = context.getString(R.string.rootLink) + rootlinks3;
         }
         if (type == IType.LISTENINGS_SECTION_4) {

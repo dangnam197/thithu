@@ -5,10 +5,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#477BB1">
+    android:background="@color/color_reading">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/listening_appBarLayout"
+        android:id="@+id/reading_appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay"
@@ -19,8 +19,8 @@
 
         <androidx.appcompat.widget.Toolbar
 
-            android:id="@+id/listening_toolbar"
-            android:background="#477BB1"
+            android:id="@+id/reading_toolbar"
+            android:background="@color/color_reading"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
@@ -35,7 +35,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/listening_appBarLayout">
+        app:layout_constraintTop_toBottomOf="@+id/reading_appBarLayout">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -45,17 +45,17 @@
             android:orientation="vertical">
 
             <ImageView
+                android:scaleType="fitCenter"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_weight="1"
-                android:tint="@color/colorWhite"
-                android:src="@drawable/icons_listerning" />
+                android:src="@drawable/book" />
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="IELTS Listening"
+                android:text="IELTS Reading"
                 android:textColor="@color/colorWhite"
                 android:textSize="30sp"
                 android:textStyle="bold" />
@@ -67,7 +67,7 @@
             android:orientation="horizontal">
 
             <LinearLayout
-                android:id="@+id/listening_s1"
+                android:id="@+id/reading_s1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="@dimen/marin_main_item"
@@ -79,30 +79,23 @@
                 <LinearLayout
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:background="@drawable/seciticon_background"
-                    android:backgroundTint="#2196F3"
+                    android:background="@drawable/lesson"
                     android:gravity="center">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="1"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="30sp"
-                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Section 1"
-                    android:textColor="@color/colorWhite"
+                    android:text="Reading 1"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/color_reading"
                     android:textSize="20sp"
                     android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/listening_s2"
+                android:id="@+id/reading_s2"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="@dimen/marin_main_item"
@@ -114,24 +107,17 @@
                 <LinearLayout
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:background="@drawable/seciticon_background"
-                    android:backgroundTint="#5B882F"
+                    android:background="@drawable/fill"
                     android:gravity="center">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="2"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="30sp"
-                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Section 2"
-                    android:textColor="@color/colorWhite"
+                    android:text="Reading 2"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/color_reading"
                     android:textSize="20sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -143,7 +129,7 @@
             android:orientation="horizontal">
 
             <LinearLayout
-                android:id="@+id/listening_s3"
+                android:id="@+id/reading_s3"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="@dimen/marin_main_item"
@@ -155,30 +141,23 @@
                 <LinearLayout
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:background="@drawable/seciticon_background"
-                    android:backgroundTint="#D14F48"
+                    android:background="@drawable/share"
                     android:gravity="center">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="3"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="30sp"
-                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Section 3"
-                    android:textColor="@color/colorWhite"
+                    android:text="Reading 3"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/color_reading"
                     android:textSize="20sp"
                     android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/listening_s4"
+                android:id="@+id/reading_s4"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="@dimen/marin_main_item"
@@ -190,24 +169,17 @@
                 <LinearLayout
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:background="@drawable/seciticon_background"
-                    android:backgroundTint="#FFC505"
+                    android:background="@drawable/tips_header_icon"
                     android:gravity="center">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="4"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="30sp"
-                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Section 4"
-                    android:textColor="@color/colorWhite"
+                    android:text="Tips"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/color_reading"
                     android:textSize="20sp"
                     android:textStyle="bold" />
             </LinearLayout>

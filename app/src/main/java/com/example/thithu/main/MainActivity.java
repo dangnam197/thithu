@@ -6,6 +6,7 @@ import android.os.Bundle;
 import com.example.thithu.Service.MediaServiceAll;
 import com.example.thithu.calendar.TimePickerActivity;
 import com.example.thithu.reading.ReadingMain.ReadingActivity;
+import com.example.thithu.writting.ReadingList.WrittingListActivity;
 import com.google.android.material.navigation.NavigationView;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -83,7 +84,9 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void starWritingActivity() {
-
+        Intent intent = new Intent(MainActivity.this, WrittingListActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
     }
 
     @Override
@@ -125,6 +128,9 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.main_audio:
                 mainPresenter.AudioButtonClick();
+                break;
+            case  R.id.line_writing:
+                mainPresenter.WritingClick();
                 break;
         }
     }

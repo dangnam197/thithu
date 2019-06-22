@@ -1,27 +1,28 @@
-package com.example.thithu.listening.ListeningList;
+package com.example.thithu.writting.ReadingList;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.appcompat.widget.Toolbar;
-
 import android.view.View;
 
 import com.example.thithu.IType;
 import com.example.thithu.R;
 import com.example.thithu.UIApp;
 import com.example.thithu.adapter.ListAdapter;
-import com.example.thithu.listening.ListeningQuest.test.ListeningQuestActivitytest;
 import com.example.thithu.model.ListListening;
+import com.example.thithu.writting.ReadingQuest.test.WritingAcitivity;
 
 import java.util.ArrayList;
 
-public class ListeningListActivity extends AppCompatActivity implements UIApp.IListeningListView {
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+public class WrittingListActivity extends AppCompatActivity implements UIApp.IListeningListView {
     private Toolbar toolbar;
-    private ListeningListPresenter presenter;
+    private WrittingListPresenter presenter;
     private RecyclerView recyclerView;
     private static final String TAG = "WrittingListActivity";
     private ListAdapter listAdapter;
@@ -30,7 +31,7 @@ public class ListeningListActivity extends AppCompatActivity implements UIApp.IL
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lisening_list);
-        presenter = new ListeningListPresenter(this,this);
+        presenter = new WrittingListPresenter(this,this);
         getDataInten();
         initView();
         init();
@@ -38,7 +39,7 @@ public class ListeningListActivity extends AppCompatActivity implements UIApp.IL
 
     private void getDataInten(){
         Intent intent = getIntent();
-        type = intent.getIntExtra("TYPE", IType.LISTENINGS_SECTION1);
+        type = IType.WRITINGS;
     }
     private void initView(){
         toolbar = (Toolbar) findViewById(R.id.toolbar_listening_list);
@@ -59,7 +60,7 @@ public class ListeningListActivity extends AppCompatActivity implements UIApp.IL
                 onBackPressed();
             }
         });
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
+        @SuppressLint("WrongConstant") LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(linearLayoutManager);
 //        listAdapter = new ListAdapter(this,presenter,null);
 //        recyclerView.setAdapter(listAdapter);
@@ -78,7 +79,7 @@ public class ListeningListActivity extends AppCompatActivity implements UIApp.IL
 
     @Override
     public void startActivity(int type, ListListening listListening) {
-        Intent intent = new Intent(ListeningListActivity.this, ListeningQuestActivitytest.class);
+        Intent intent = new Intent(WrittingListActivity.this, WritingAcitivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         intent.putExtra("TYPE",type);
         intent.putExtra("ITEM",listListening);

@@ -59,4 +59,8 @@ public interface UIApp {
         void showDialogResult(int correct,int total);
         void setTextReading(String text);
     }
+    interface Writting{
+        void setTvQuest(String tvQuest);
+        void setTvSample(String tvSample);
+    }
 }

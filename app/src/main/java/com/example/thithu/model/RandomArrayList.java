@@ -17,7 +17,7 @@ public class RandomArrayList<T> {
         ArrayList<T> listRandom = new ArrayList<>();
         int i;
         while(true){
-            if(list.size()==0){
+            if(list.size()<=2){
                 break;
             }
             System.out.println(list.size());
